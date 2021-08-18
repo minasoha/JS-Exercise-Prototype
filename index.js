@@ -109,18 +109,24 @@ Car.prototype.fill= function(gallons){
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
- 
+function Baby(name, age, favoriteToy) {
+  Person.call(this, name, age);
+  this.favoriteToy = favoriteToy;
+}
+Baby.prototype = Object.create(Person.prototype);
+
+Baby.prototype.play = function(){
+  return `Playing with ${this.favoriteToy}`;
 }
 
 
 /* 
   TASK 4
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. If there's no rules applied it will default to the global object. (Window Binding)
+  2. When the function is invoked it will look to the left of the dot to see what it is referring to. (Implicit Binding)
+  3. When a constructor function is invoked it uses "this" keyword to create new object. (New Binding)
+  4. It will pass arguments 1 by 1 when calling it. When using apply, you will pass an argument as an array. When using bind, it does not invoke the function, however it will create a new function that can be invoked later.  (Explicit Binding)
 */
 
 
